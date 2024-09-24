@@ -27,7 +27,7 @@ Matériels:
     Serveur mosquitto 
 
 
-### INSTALATION
+### INSTALLATION
 Exemples de configuration dans etc/conf.<br>
 Les serveurs peuvent s'installer dans le réseau local ou public (ssl). On préférera une installation locale<br>
 Se reporter au fichier quizmaster/help.install.txt qui détaille les procédures.
@@ -62,7 +62,7 @@ Se reporter au fichier quizmaster/help.install.txt qui détaille les procédures
             sudo cp etc/conf/quiz-service.conf /etc/supervisor/conf.d/
             sudo supervisorctl reread 
 
-        Editer et Configurer les variables d'environnement automation/.env-example
+        Editer et Configurer les variables d'environnement quizmaster/.env-example
         Configurer correctement les utilisateurs et les mots de passe (superadmin, quizmaster, quizbox)
             cp quizmaster/.env-example quizmaster/.env 
             

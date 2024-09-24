@@ -54,7 +54,7 @@ Refer to the quizmaster/help.install.txt file which details the procedures.
         sudo cp etc/conf/quiz-service.conf /etc/supervisor/conf.d/
         sudo supervisorctl reread
 
-    Edit and Configure Environment Variables automation/.env-example
+    Edit and Configure Environment Variables quizmaster/.env-example
         Configure users and passwords correctly (superadmin, quizmaster, quizbox)
         cp quizmaster/.env-example quizmaster/.env
 
