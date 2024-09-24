@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block brand_href %}/{% endblock %}
+
+{% block brand_ref %}
+	<div class="w3-cell w3-cell-top w3-right-align">
+		<div class="w3-container w3-cell w3-layout-middle">
+		{% block logo_ref %}
+			<div><img src="/static/img/rubiks.png" class="w3-circle logo" height="48px"></div>
+		{% endblock %}
+		</div>
+		<div class="w3-container w3-cell">
+			<b class="w3-wide w3-text-blue w3-xlarge">Quizmaster</b><br>
+			<i class="w3-badge w3-orange ss-pong p-1"></i>&nbsp;
+			{% block ss_title_bar %}<span class="w3-small">Serious game</span>{% endblock  %}
+		</div>
+	</div>
+{% endblock %}
+{% block menubar_left %}{% include "include/menu-left.html" %}{% endblock %}
+{% block menubar_right %}{% include "include/menu-right.html" %}{% endblock %}
+{% block footer %}{% include "include/footer.html" %}{% endblock  %}
+

@@ -1,0 +1,15 @@
+description,boolean,A,B,C,D,E,F,expected
+"Que signifient les trois lettres ""www"" en informatique ?",,World Wide Wireless,World Wide Web,Web World Widget,Rien du tout !,,,B
+"Quel est l’élément qui n’appartient pas à la famille des ""Software"" ?",,Avast anti-virus,Microsoft,Internet Explorer,CD-ROM,,,D
+À quoi sert une adresse IP ?,,Identifier chaque ordinateur connecté à Internet,Afficher l'adresse postale d'un serveur,Définir le positionnement GPS d'un internaute,Ca sert à décorer,,,A
+En quoi consiste « l'overcloaking » ?,,Mesurer les performances d'un microprocesseur,Augmenter la fréquence d'un microprocesseur,Combiner deux microprocesseurs,Je veux sauter cette question dure !,,,B
+"Parmi ces logiciels, lequel n’est pas un « Tableur » ?",,Microsoft PowerPoint,Microsoft Excel,Apple Numbers,Tablette ou tableur ?,,,A
+"Cherchez l’intrus parmi ces ""Portes Logiques"" :",,ET,DANS,OUI,OU,,,B
+Cherchez l’intrus :,,Clé USB,Carte mémoire SD,Disque dur,Poste de travail,,,D
+Quelle est la signification du mot « Périphérique » en informatique ?,,L’électricité qui circule dans le processeur,Les différents composants matériels du PC,Vitesse limitée à 90 Km/h,Les logiciels installés sur le PC,,,B
+La puissance d'un microprocesseur est le critère essentiel pour les jeux vidéo musclés.,1,,,,,,,1
+"Un microprocesseur d'entrée de gamme suffit pour surfer sur internet, rédiger un courrier ou jouer au solitaire :",1,,,,,,,1
+"Que signifie le 'A' de ""ADSL"" ?",,Asynchronous,Asymmetrical,Accelerator,Attention,,,B
+"À quoi correspondent les ""3 Ghz"" d'un microprocesseur ?",,À la finesse de gravure,À la fréquence du signal d'horloge,Au nombre de transistors,J'abandonne,,,B
+"Pour améliorer les performances d’un PC, il faut diminuer sa mémoire vive RAM ?",1,,,,,,,0
+"À quoi sert un ""firewall"" en informatique ?",,À bloquer les connexions non autorisées,À neutraliser les virus,À scanner les logiciels téléchargés,Un Firefox ?,,,A

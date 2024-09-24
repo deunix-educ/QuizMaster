@@ -1,0 +1,55 @@
+
+.box-flex-container { display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: stretch; align-content: stretch; }
+
+.box                { margin: 0.2em; padding:1.5em 0;}
+div.box-header,
+div.box-footer      { height: 1.25em; }
+div.cam             { width: 240px; }
+
+.footer             { position: fixed; left: 0; bottom: 0; width: 100%; }
+
+.display-none       { display: none; }
+.display-block      { display: block; }
+.truncate           { overflow: hidden; text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 1; -webkit-box-orient: vertical;}
+.relative           { position: relative;}
+
+.box-container      { position: relative; }
+.box-image          { display: block; }
+.box-overlay        { position: absolute; bottom: 1.25em; right: 0; color: #fff!important; background-color:#333!important}
+.ss-overlay         { position: absolute; bottom: 1.25em; left: 0; color: #fff!important; background-color:#333!important}
+input.box-range     { margin: 0; padding: 0; height: 6px;}
+
+i.ws-status     { position: absolute; top: 0; left: 0; padding: 0.1em; }
+i.rec-status    { position: absolute; bottom: 2.9em; left: 0; padding: 0.18em; }
+i.alive-status  { position: absolute; bottom: 1em; left: 0; padding: 0.18em; }
+
+#conf-slide     { display:none; position: relative; top: 0; left: 0; }
+#map-slide      { display:none; top: 0; right:0; }
+#search-slide   { display:none; position: relative; top: 0; left: 0; }
+.orange-circle  { background: #f57900; border-radius: 50%; box-shadow: 3px 3px 2px grey; -moz-box-shadow: 3px 3px 2px grey; -webkit-box-shadow: 3px 3px 2px grey; }
+.blue-circle    { background: #0000ff; border-radius: 50%; box-shadow: 3px 3px 2px grey; -moz-box-shadow: 3px 3px 2px grey; -webkit-box-shadow: 3px 3px 2px grey; }
+
+img.player      { width: 1.8em; margin: 0.1em; cursor: pointer;}
+img.ctl,img.home{ margin: 0 0.25em; }
+
+ul.ss           { margin-left: 0; padding-left: 0; }
+input.geo       { width: 8em;}
+input.boxinput  { width: 4em; }
+
+.bt-margin      { margin: 0.125em; }
+.border-slide   { cursor: pointer; height: 90vh; width: 0.25em; }
+
+.hr-slide {
+  background-image: url("/static/img/list.png");
+  background-color: #444;
+  height: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+@media only screen and (max-width: 640px)   {
+    div._infos, button._infos, tr._infos { display: none !important; }
+}
+
+

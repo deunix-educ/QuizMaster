@@ -1,0 +1,29 @@
+{% extends 'base-view.html' %}
+{% load i18n %}
+{% block ss_title_bar %}
+    <span class="w3-opacity">{% trans 'Game sessions' %}</span>
+{% endblock  %}
+{% block principal %}
+	<div id="quiz-slide" class="w3-container w3-sidebar w3-animate-left w3-dark-low">
+	    {% include "include/quiz-form.html" %}
+	    <hr>
+	    {% if session %}
+	        {% include "include/quiz-queries.html" %}
+	        {% include "include/quiz-command.html" %}
+	    {% endif %}
+	</div>
+	<div id="quiz-main">
+        <div class="w3-cell-row">
+            <div class="w3-cell w3-cell-middle border-slide w3-dark-plus">
+                <div class="w3-text-orange w3-small" onclick="quiz_toggle()">&#9776;</div>
+	        </div>
+            <div class="w3-cell w3-cell-top">
+                {% include "include/quiz-display.html" %}
+            </div>
+        </div>
+
+	</div>
+{% endblock %}
+{% block js_footer %}
+    {% include 'include/quiz-js-inc.html' %}
+{% endblock %}

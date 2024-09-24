@@ -1,0 +1,41 @@
+
+{% if page.has_other_pages %}
+	<div class="w3-bar">
+		{% if page.has_previous %}
+		  <a class="w3-button" href="?page={{ page.previous_page_number }}{{ query_filter }}" aria-label="Previous">
+		  	<span>&laquo;</span>
+		  </a>
+		{% endif %}
+		{% for page_num in begin %}
+		    {% if page.number == page_num %}
+		    <a class="w3-button w3-teal" href="?page={{ page_num }}{{ query_filter }}">{{ page_num }}</a>
+		    {% else %}
+		    <a class="w3-button" href="?page={{ page_num }}{{ query_filter }}">{{ page_num }}</a>
+		    {% endif %}
+	  	{% endfor %}
+		{% if middle %}
+	    <a class="w3-button">...</a>
+		    {% for page_num in middle %}
+		      {% if page.number == page_num %}
+		      <a class="w3-button w3-teal" href="?page={{ page_num }}{{ query_filter }}">{{ page_num }}</a>
+		      {% else %}
+		      <a class="w3-button" href="?page={{ page_num }}{{ query_filter }}">{{ page_num }}</a>
+		      {% endif %}
+		    {% endfor %}
+	  {% endif %}
+	  {% if end %}
+	    <a class="w3-button">...</a>
+			{% for page_num in end %}
+		      {% if page.number == page_num %}
+		    	<a class="w3-button w3-teal" href="?page={{ page_num }}{{ query_filter }}">{{ page_num }}</a>
+		      {% else %}
+		      	<a class="w3-button" href="?page={{ page_num }}{{ query_filter }}">{{ page_num }}</a>
+		      {% endif %}
+		    {% endfor %}
+	  {% endif %}
+	  {% if page.has_next %}
+	    <a class="w3-button" href="?page={{ page.next_page_number }}{{ query_filter }}"><span>&raquo;</span></a>
+	  {% endif %}
+	</div>
+{% endif %}
+

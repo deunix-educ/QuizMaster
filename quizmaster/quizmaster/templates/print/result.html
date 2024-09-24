@@ -1,0 +1,32 @@
+{% load i18n %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% trans 'Quizmaster results' %}</title>
+        {% include 'include/printing-css.html' %}
+    </head>
+    <body>
+        {% include 'print/header.html' %}
+        {% include 'print/footer.html' %}
+        <div class="title">{{ session.quiz.title }}</div>
+
+        <table class="print">
+            <tr class="text-center">
+                <th>{% trans 'Gamer' %}</th>
+                <th>{% trans 'Correct answers' %}</th>
+                <th>{% trans 'Wrong answers' %}</th>
+                <th>{% trans 'Missing answers' %}</th>
+                <th>{% trans 'Rank' %}</th>
+	        </tr>
+            {% for r in ranking %}
+            <tr class="text-center">
+                <td>{{ r.user.username }}</td>
+                <td><span class="w3-text-green">{{ r.correct }}</span></td>
+                <td><span class="w3-text-red">{{ r.wrong }}</span></td>
+                <td><span class="w3-text-purple">{{ r.missing }}</span></td>
+                <td><span class="w3-text-orange">{{ r.rank }}</span></td>
+            </tr>
+            {% endfor %}
+       </table>
+    </body>
+</html>

@@ -1,0 +1,119 @@
+
+mariadb
+-------------------------------------------
+
+>> /etc/mysql/mariadb.conf.d/50-server.cnf
+------------------------------------------
+[server]
+
+[mysqld]
+
+user                    = mysql
+pid-file                = /run/mysqld/mysqld.pid
+basedir                 = /usr
+datadir                 = /mnt/sda1/mysql
+tmpdir                  = /tmp
+lc-messages-dir         = /usr/share/mysql
+lc-messages             = en_US
+skip-external-locking
+
+# Broken reverse DNS slows down connections considerably and name resolve is
+# safe to skip if there are no "host by domain name" access grants
+#skip-name-resolve
+
+# Instead of skip-networking the default is now to listen only on
+# localhost which is more compatible and is not less secure.
+bind-address      = 127.0.0.1
+
+#skip-bind-address
+#skip-networking=0
+-------------------------------------------------------
+#> mariadb
+
+grant all privileges on *.* to 'admin'@'%' identified by 'xxxxxxxxxxxxxxxxxx' with grant option;
+create database quiz;
+grant all privileges on quiz.* to 'quiz'@'%' identified by 'xxxxxxxxxxxx' with grant option;
+flush privileges;
+
+-------------------------------------------------------
+iptables
+--------
+
+iptables -A INPUT -i eth0 -m state --state NEW,ESTABLISHED -p tcp -m tcp --dport 8883:8884  -j ACCEPT
+
+-------------------------------------------------------
+mosquitto
+---------
+Edit >> /etc/mosquitto/conf.d/mosquitto-local.conf
+
+# local config
+#
+allow_anonymous false
+password_file /etc/mosquitto/passwd
+
+listener 1883
+protocol mqtt
+
+listener 1884
+protocol websockets
+
+listener 8884
+protocol websockets
+cafile /etc/mosquitto/ca_certificates/ca.crt
+certfile /etc/mosquitto/certs/fullchain.pem
+keyfile /etc/mosquitto/certs/privkey.pem
+
+
+listener 8883
+cafile  /etc/mosquitto/ca_certificates/ca.crt
+keyfile /etc/mosquitto/certs/server.key
+certfile /etc/mosquitto/certs/server.crt
+
+tls_version tlsv1.2
+
+-------------------------------------------------------
+ssl certificat mosquitto
+
+Execute in order:
+cd /home/quiz/SeriousGame/etc/install
+$> ./server-certs.sh
+$> ./client-certs.sh
+#> cp /home/quiz/SeriousGame/etc/install/server-certs/ca.crt /etc/mosquitto/ca_certificates/
+#> cp /home/quiz/SeriousGame/etc/install/server-certs/server.key /home/quiz/SeriousGame/etc/install/server-certs/server.crt /etc/mosquitto/certs/
+#> chown mosquitto:mosquitto /etc/mosquitto/ca_certificates/ca.crt
+#> chown mosquitto:mosquitto /etc/mosquitto/certs/server*
+
+#> cp /etc/mosquitto/ca_certificates/ca.crt /home/quiz/SeriousGame/quizmaster/contrib/mosquitto_ca.crt
+#> chown quiz:quiz /home/quiz/SeriousGame/quizmaster/contrib/mosquitto_ca.crt
+#> mv server-certs client-certs /root/
+
+-------------------------------------------------------
+quiz.xxxxx.org certificat
+-----------------------------
+#> certbot --nginx certonly --dry-run -d quiz.xxxxx.org
+#> certbot --nginx -d quiz.xxxxx.org
+
+-------------------------------------------------------
+Installation django server
+--------------------------
+cd  /home/quiz/SeriousGame/
+$> python3 -m venv .venv
+$> source .venv/bin/activate
+$> pip install -U pip wheel setuptools
+$> pip install -r etc/install/requirement.txt
+
+$> cd quizmaster
+$> ./manage.py migrate
+$> ./manage.py makemigrations quizmaster
+$> ./manage.py migrate
+$> ./manage.py initadmin
+$> ./manage.py collectstatic
+
+
+
+
+
+
+
+
+

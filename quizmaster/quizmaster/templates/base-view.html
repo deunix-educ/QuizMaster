@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block styles  %}
+    <link href="/static/app/main.css" rel="stylesheet">
+{% endblock %}
+{% block js_header %}
+    {{ block.super }}
+    <script>
+    let csrftoken = "{{ csrf_token }}";
+    </script>
+    <script src="/static/js/mqttws31.js"></script>
+    <script src="/static/app/mqttclient.js"></script>
+    <script src="/static/app/ajax-resources.js"></script>
+    <script src="/static/app/common.js"></script>
+{% endblock %}
+ {% block app_message %}{% endblock %}
+{% block menubar_ws_status %}
+<div class="status">
+    <i class="fas fa-wifi ws-status w3-text-red" title="Serveur mqtt"></i>
+    <i class="fas fa-server alive-status w3-text-red" title="Serveur quiz"></i>
+</div>
+{% endblock %}
+{% block principal %}{% endblock %}
+

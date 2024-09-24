@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<h6 class="w3-dark-light w3-round-large p-2">
+    {% trans 'Session' %}: {{ session.id }} - {{ session.date|date:'d/m/Y H:i' }}<br><span class="w3-small">{{ session.owner.username }}</span>
+</h6>
+<div class="mt-3">
+    <label>{% trans 'Queries' %}:</label><br>
+    <select class="w3-select" id="query" onchange="quizRange($(this).val())">
+    {% for q in queries %}
+        <option value="{{ q.range }}">{{ q.range }} - {{ q.query.description}}</option>
+    {% endfor %}
+    </select>
+</div>
+<div class="mt-3">
+    <label>{% trans 'Timeout beetween questions' %}:</label><br>
+    <input type="number" id="qtimeout" value="{{ session.timeout }}" min="1" max="60" step="1" onchange="quizTimeout($(this).val())"/> s
+</div>
+<div class="mt-3">
+    <input class="w3-check" type="checkbox" onclick="quizExpected($(this))" id="qexpected"> <label>{% trans 'Expected response is masqued' %}</label>
+</div>
+<hr>

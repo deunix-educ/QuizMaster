@@ -1,0 +1,59 @@
+{% load default_tags %}
+<!DOCTYPE html>
+<html lang="fr_FR">
+    <head>
+        <title>{% block title %}Quizmaster{% endblock %}</title>
+    	{% block metas %}
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="author" content="<deunix>">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link href="/static/img/logo.png" rel="shortcut icon">
+	    {% endblock %}
+        <link href="/static/css/w3.css" rel="stylesheet">
+        <link href="/static/css/all.css" rel="stylesheet">
+        <link href="/static/app/w3-custom.css" rel="stylesheet">
+	    {% block styles %}{% endblock %}
+		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/w3.js"></script>
+		<script src="/static/app/w3-custom.js"></script>
+		{% block js_header %}{% endblock %}
+    </head>
+    <body id="top-body" class="w3-black">
+    {% block content %}
+        {% block navbar %}
+        <div class="w3-top">
+			<div class="w3-bar w3-black w3-border-bottom">
+			    {% block menubar_ws_status %}{% endblock %}
+				<a href="{% block brand_href %}/{% endblock %}" class="w3-bar-item w3-button w3-hover-amber w3-black">{% block brand_ref %}{% endblock brand_ref %}</a>
+				{% block stitle_header %}{% endblock %}
+				{% block menubar_left %}{% endblock %}
+				{% block menubar_right %}{% endblock %}
+			</div>
+			{% block navbar_top %}
+				<div class="w3-bar w3-small w3-padding-small">
+				{% block menu_top %}{% endblock %}
+				</div>
+			{% endblock %}
+
+		</div>
+		{% endblock navbar %}
+		<div class="w3-display-container" style="top: 5.1em">
+        {% block main_content %}
+            {% block top %}{% endblock top %}
+            {% block app_message %}{% include 'include/message.html' %}{% endblock %}
+            {% block principal %}{% endblock  %}
+            {% block bottom %}{% endblock %}
+    {% block footer %}{% endblock  %}
+    {% block cookies_message %}{% endblock %}
+        {% endblock main_content %}
+        </div>
+
+    {% endblock content %}
+
+    {% block hidden %}{% endblock %}
+    {% block js_footer %}{% endblock %}
+    </body>
+</html>

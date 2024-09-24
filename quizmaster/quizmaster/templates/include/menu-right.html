@@ -1,0 +1,25 @@
+{% load i18n default_tags %}
+{% if request.user.is_contributor  %}
+<div class="_infos w3-dropdown-hover w3-right">
+    <button class="w3-button w3-dark-plus w3-round-large"><span>{{ request.user.username }}&nbsp; &#9776;</span></button>
+    <div class="w3-dropdown-content w3-bar-block w3-border w3-dark-low"  style="right:.5em;">
+        <a href="{% url 'quiz' %}" class="w3-bar-item w3-button"><i class="fas fa-gamepad w3-text-teal"></i> {% trans 'Play a quiz' %}</a>
+        <a href="{% url 'quiz_result' %}" class="w3-bar-item w3-button"><i class="fas fa-list w3-text-teal"></i> {% trans 'Games result' %}</a>
+        <a href="{% url 'gamer_list' %}" class="w3-bar-item w3-button"><i class="fas fa-users w3-text-orange"></i> {% trans 'Gamers list' %}</a>
+
+
+        <a href="{% url 'quiz_import' %}" class="w3-bar-item w3-button"><i class="fas fa-question-circle w3-text-green"></i> {% trans 'Import a quiz' %}</a>
+        <a href="{% url 'quiz_export' %}" class="w3-bar-item w3-button"><i class="fas fa-question-circle w3-text-green"></i> {% trans 'Export a quiz' %}</a>
+        <a href="{% url 'quiz_help' %}" class="w3-bar-item w3-button"><i class="fas fa-info w3-text-blue"></i>&nbsp;&nbsp;{% trans 'Quiz help' %}</a>
+
+        {% if request.user.is_superuser or request.user.is_staff %}
+        <hr class="w3-bar-item divider w3-grey">
+        <hr class="w3-bar-item divider w3-grey">
+        <a href="{% url 'tools' %}" class="w3-bar-item w3-button"><i class="fas fa-tools w3-text-orange"></i> {% trans 'Tools' %}</a>
+        <a href="/admin/" class="w3-bar-item w3-button"><i class="fas fa-database w3-text-orange"></i> {% trans 'Database administration' %}</a>
+        {% endif %}
+        <hr class="w3-bar-item divider w3-grey">
+        <a href="{% url 'logout' %}" class="w3-bar-item w3-button"><i class="fas fa-sign-out-alt w3-text-red"></i> {% trans 'Logout' %}</a>
+    </div>
+</div>
+{% endif %}

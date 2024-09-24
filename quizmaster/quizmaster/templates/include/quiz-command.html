@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="w3-cell-row screen-query">
+    <div class="w3-cell w3-cell-center">
+        <i class="fas fa-circle w3-text-red cursor-pointer qstatus" title="{% trans 'Status session' %}"></i>
+    </div>
+    <div class="w3-cell w3-cell-center">
+        <button id="qz-start" type="button" class="w3-button w3-round-large w3-blue p-2" data-btn="1" onclick="quizstart()"><i class="far fa-play-circle"></i> {% trans 'Start' %}</button>&nbsp;
+        <button id="qz-pause" type="button" class="w3-button w3-round-large w3-orange p-2" data-btn="1" onclick="quizpause()"><i class="far fa-pause-circle"></i> {% trans 'Pause' %}</button>
+        <button id="qz-stop" type="button" class="w3-button w3-round-large w3-right w3-red p-2" data-btn="1" onclick="quizstop()"><i class="far fa-stop-circle"></i> {% trans 'Stop' %}</button>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+{% extends 'base-view.html' %}
+{% load i18n %}
+{% block ss_title_bar %}<span class="w3-opacity">{% trans 'Quizbox' %}</span>{% endblock  %}
+
+{% block principal %}
+<div class="mt-4">
+    <div class="w3-border m-0 p-0" style="width: 350px; margin:0 auto">
+        <div class="w3-dark-plus">
+            <i class="fas fa-circle w3-text-red cursor-pointer w3-left m-1 qstatus" title="{% trans 'Status session' %}"></i>
+
+            <span class="ml-1 w3-small">
+                <span>{% trans 'Session' %}:&nbsp;<span class="sid"></span></span>
+
+           </span>
+            <span class="m-1 w3-small w3-right" style="color: {{ request.user.color }}"><i class="fas fa-user"></i> {{ request.user.username }}</span>
+
+            <h6 class="m-0 w3-center"><span class="title"></span></h6>
+        </div>
+        <div id="scr-reply" class="w3-hide">
+            <table class="w3-table mt-4 w-3">
+                <tr class="middle">
+                    <td>{% trans 'Correct answers' %}</td>
+                    <td class="w3-large">
+                        <span class="w3-text-green correct"></span> / <span class="w3-text-green q_rows"><span>
+                    </td>
+                </tr>
+                <tr class="middle">
+                    <td>{% trans 'Wrong answers' %}</td>
+                    <td class="w3-large">
+                        <span class="w3-text-red wrong"></span> / <span class="w3-text-red q_rows"></span>
+                    </td>
+                </tr>
+                <tr class="middle">
+                    <td>{% trans 'Missing answers' %}</td>
+                    <td class="w3-large">
+                        <span class="w3-text-purple missing"></span> / <span class="w3-text-purple q_rows"></span>
+                    </td>
+                </tr>
+                <tr class="middle">
+                    <td>{% trans 'Ranking' %}</td>
+                    <td class="w3-large">
+                        <span class="w3-text-orange rank"></span> / <span class="w3-text-orange registered"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+	    <div id="scr-query">
+	        <div class="">
+	            <div class="m-1"><span class="description w3-small"></span></div>
+	            <h5 class="m-4"><span class="w3-large boolean"></span></h5>
+			    <div class="m-4">
+			        <span class="A"></span><br>
+			        <span class="B"></span><br>
+			        <span class="C"></span><br>
+			        <span class="D"></span><br>
+			        <span class="E"></span><br>
+			        <span class="F"></span><br>
+			    </div>
+	        </div>
+	        <div class="w3-cell-row">
+                <div class="w3-cell w3-cell-bottom w3-border w3-center">
+                      <span class="w3-badge w3-orange registered"></span><br><span class="w3-small"><i class="fas fa-users w3-text-orange"></i> {% trans 'Registered' %}</span>
+                </div>
+	            <div class="w3-cell w3-cell-bottom w3-border w3-center">
+	                 <span class="w3-badge w3-blue-grey range"> </span><br><span class="w3-small"><i class="fas fa-bars w3-text-blue"></i> {% trans 'Row on' %}&nbsp;<span class="q_rows"></span></span>
+	            </div>
+	            <div class="w3-cell w3-cell-bottom w3-border w3-center">
+	                <span class="w3-badge response">&nbsp;</span><br><span class="w3-small"><i class="fas fa-reply w3-text-lime"></i> {% trans 'Expected' %}</span>
+	            </div>
+	            <div class="w3-cell w3-cell-bottom w3-border w3-center">
+	                <span class="w3-badge w3-teal countdown"> </span><br><span class="w3-small"><i class="fas fa-clock w3-text-teal"></i> {% trans 'Remainder' %}</span>
+	            </div>
+	        </div>
+
+	        <div class="w3-cell-row p-1">
+	            <div class="w3-cell w3-center">
+	                <button class="_bt0 w3-button w3-large w3-pale-yellow bt-margin" onclick="send_reply(2)">A</button>
+	                <button class="_bt0 w3-button w3-large w3-pale-yellow bt-margin" onclick="send_reply(3)">B</button>
+	                <button class="_bt0 w3-button w3-large w3-pale-yellow bt-margin" onclick="send_reply(4)">C</button>
+	                <button class="_bt0 w3-button w3-large w3-pale-yellow bt-margin" onclick="send_reply(5)">D</button>
+	                <button class="_bt0 w3-button w3-large w3-pale-yellow bt-margin" onclick="send_reply(6)">E</button>
+	                <button class="_bt0 w3-button w3-large w3-pale-yellow bt-margin" onclick="send_reply(7)">F</button>
+	            </div>
+	        </div>
+	        <div class="w3-cell-row p-1">
+	            <div class="w3-cell">
+	                <button class="_bt1 w3-button w3-block w3-wide w3-green" onclick="send_reply(1)"><h6>{% trans 'Yes' %}</h6></button>
+	            </div>
+	            <div class="w3-cell">
+	                <button class="_bt1 w3-button w3-block w3-wide w3-red" onclick="send_reply(0)"><h6>{% trans 'No' %}</h6></button>
+	            </div>
+	        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js_footer %}
+    {% include 'include/box-js-inc.html' %}
+{% endblock %}

@@ -1,0 +1,13 @@
+
+<div class="w3-center mt-4">
+    <div id="flash-message-placeholder"></div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+	<div class="w3-bar alert {% if message.tags %}{{ message.tags }}{% endif %}" style="min-width:300px">
+		<div class="w3-bar-item">{{ message }}</div>
+		<div class="w3-bar-item w3-button w3-right"onclick="this.parentElement.style.display='none'">&times;</div>
+	</div>
+    {% endfor %}
+{% endif %}
+

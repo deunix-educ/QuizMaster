@@ -1,0 +1,93 @@
+<!--
+background-color
+border-bottom-color, border-bottom-style, border-bottom-width
+border-left-color, border-left-style, border-left-width
+border-right-color, border-right-style, border-right-width
+border-top-color, border-top-style, border-top-width
+colordisplay
+font-family, font-size, font-style, font-weight
+height
+line-height, list-style-type
+margin-bottom, margin-left, margin-right, margin-top
+padding-bottom, padding-left, padding-right, padding-top
+page-break-after, page-break-before
+size
+text-align, text-decoration, text-indent
+vertical-align
+white-space
+width
+-->
+
+<style type="text/css">
+
+@page { 
+    size: {{ pagesize }} portrait; 
+    margin-left: 1cm; 
+    margin-right: 1cm;
+    margin-top: 2cm;
+    margin-bottom: 3cm;
+    
+    @frame header{
+        -pdf-frame-content: headerContent;
+        top: 0.25cm;
+        left: 0.25cm;
+        height: 1cm;
+    }  
+    @frame footer {
+        -pdf-frame-content: footerContent;
+        bottom: 0.25cm;
+        left: 0.25cm;
+        margin-right: 1cm;
+        height: 2cm;
+    }                
+}
+
+body            { font-weight: 300; font-size: 14px; }
+.new-page       { page-break-after: always; }
+
+.title          { padding: 5px; text-align: center; font-size: 48px; }
+
+table.border, table.border th, table.border td  { border: 1px solid black;}
+
+table.print th  { height: 50px; font-weight: 800; font-size: 20px; vertical-align: middle; padding-top: 4px; padding-bottom: 4px; border-bottom: 1px solid black; }
+table.print td  { height: 40px; font-weight: 400;  font-size: 16px; vertical-align: middle; padding-top: 4px; padding-bottom: 4px; border-bottom: 1px solid black;}
+
+table.printless th  { height: 100px; font-weight: 800; font-size: 14px; vertical-align: middle; padding-top: 4px; padding-bottom: 4px; border-bottom: 1px solid black; }
+table.printless td  { height: 100px; font-weight: 400;  font-size: 12px; vertical-align: middle; padding-top: 4px; padding-bottom: 4px; border-bottom: 1px solid black;}
+
+.text-center    { text-align: center !important; }
+.text-left      { text-align: left !important; }
+.text-right     { text-align: right !important; }
+
+.valign-center  { vertical-align: center; }
+.valign-bottom  { vertical-align: bottom; }
+.valign-top     { vertical-align: top; }
+
+.h20            { height: 20px; }
+.h30            { height: 30px; }
+.h40            { height: 40px; }
+.h50            { height: 50px; }
+.h60            { height: 60px; }
+
+.w50            { width: 50px; }
+.w75            { width: 75px; }
+.w100           { width: 100px; }
+.w200           { width: 200px; }
+.w300           { width: 300px; }
+.w400           { width: 400px; }
+.w500           { width: 500px; }
+
+.fnt8           { font-size: 8px; }
+.fnt10          { font-size: 10px; }
+.fnt12          { font-size: 12px; }
+.fnt14          { font-size: 14px; }
+.fnt16          { font-size: 16px; }
+.fnt20          { font-size: 20px; }
+.fnt24          { font-size: 24px; }
+
+.fw600           { font-weight: 600; }
+.fw700           { font-weight: 700; }
+.fw800           { font-weight: 800; }
+.fw900           { font-weight: 900; }
+
+</style>

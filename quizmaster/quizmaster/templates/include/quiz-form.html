@@ -1,0 +1,16 @@
+{% load i18n default_tags %}
+<form action="" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <h6 class="w3-dark-light w3-round-large p-2">{% trans 'Choose a quiz' %}</h6>
+    <div class="mt-2">
+            <label>{{ filter.levels.label }}:</label>
+            {{ filter.levels }}
+    </div>
+    <div class="mt-2">
+        <label>{{ filter.quiz.label }}:</label>
+        {{ filter.quiz }}
+    </div>
+    <div class="mt-2">
+        <button type="submit" name="_new" value="1" class="w3-button w3-round-large w3-teal"><i class="fas fa-plus-circle"></i> {% trans 'New session' %}</button>
+    </div>
+</form>

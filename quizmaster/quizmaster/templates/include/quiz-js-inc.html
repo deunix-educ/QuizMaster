@@ -1,0 +1,183 @@
+{% load i18n %}
+<script>
+// data and constantes
+let mqtt_options = {
+	host: "{{ mqtthost }}",
+	port: parseInt("{{ mqttport }}"),
+	reconnectTimeout: 5,
+	//userName: mqttuser,
+	//password: mqttpass,
+	cleanSession: true,
+	keepAliveInterval: 60,
+	subs: {{ topicsubs|safe }},
+	useSSL: "{{ use_ssl }}" == "True"
+};
+let topicBase   = "{{ topicbase }}";
+let uuid        = "{{ uuid }}";
+let sid         = parseInt("{{ session.id }}");
+let yes_no      = "{% trans 'Yes / No' %}";
+let queryValue  = {{ choices|safe }};
+let q_rows      = parseInt("{{ q_rows }}");
+let url_options = "{% url 'quiz_mqtt_options' %}";
+
+let start_btn   = $('#qz-start');
+let pause_btn   = $('#qz-pause');
+let stop_btn    = $('#qz-stop');
+
+let slidelen    = "30%";
+let quizid      = $('#quiz-main');
+let slideid     = $('#quiz-slide');
+let expected    = $('#expected');
+let results     = $('#results > tbody');
+let screenQuery = $('div.screen-query');
+
+let timeout     = null;
+let is_started  = false;
+let colnum      = 3;
+let curcol      = 0;
+
+
+function sendMessage(evt, p)    { publish(topicBase +'/'+ tsNow() +'/'+ evt, p); }
+function onOpen()               { sendMessage('onopen',  {}); }
+function onClose()              { sendMessage('onclose', {}); }
+function unconnectPlayers()     { sendMessage('unconnect', {}); }
+
+
+function onDisconnectionCBAK(r) { onDisconnectionCb(response); onClose(); }
+function onConnectionCBAK()     { unconnectPlayers(); onConnectionCb(); onOpen(); }
+function quiz_open()            { quizid.css("margin-left", slidelen); slideid.css("width", slidelen); slideid.css("display", "block"); }
+function quiz_close()           { quizid.css("margin-left", "0"); slideid.css("display", "none"); }
+function quiz_toggle()          { slideid.css('display')=='none' ? quiz_open(): quiz_close(); }
+function cleanScreenQuery()     { w3Hide(screenQuery); $('span.scr').text(''); }
+
+function quizparams()           {
+    return {
+        sid: sid, range: parseInt($('#query').val()),
+        timeout: parseInt($('#qtimeout').val()),
+        expected: $('#qexpected').is(":checked"),
+        q_rows: q_rows
+    };
+}
+
+function display(p)             {
+    $.each(p, function(k, v) {
+        switch (k) {
+            case ('range'): $('#query').val(v); break;
+            case ('boolean'): v = v ? v = yes_no: null; break;
+            case ('A'):
+            case ('B'):
+            case ('C'):
+            case ('D'):
+            case ('E'):
+            case ('F'):  v = v ? k +' - '+ v: null; break;
+            case ('response'): if (v) { v=queryValue[p.expected]; $('span.'+k).addClass('blink w3-green');} else {  v=' '; $('span.'+k).removeClass('blink w3-green'); } break;
+        }
+        $('span.'+k).text(v);
+    });
+}
+
+function prepareyResults(p) {
+    results.empty();
+    $.each(p, function(uuid, u) {
+        var c =
+        '<tr>'+
+        	'<td class="w3-border w3-left-align" style="color:'+ u.color +'">'+ u.gamer +'</td>'+
+        	'<td class="w3-border"><span class="rsp reply-'+ uuid +'"></span></td>'+
+        	'<td class="w3-border"><span class="w3-text-green correct-'+ uuid +'"></span></td>'+
+        	'<td class="w3-border"><span class="w3-text-red wrong-'+ uuid +'"></span></td>'+
+        	'<td class="w3-border"><span class="w3-text-purple missing-'+ uuid +'"></span></td>'+
+        	'<td class="w3-border"><span class="w3-text-orange rank-'+ uuid +'"></span></td>'+
+        '</tr>';
+        results.prepend(c);
+    });
+}
+
+function displayResults(uuid,p) {
+    $('span.correct-'+uuid).text(p.correct);
+    $('span.wrong-'+uuid).text(p.wrong);
+    $('span.missing-'+uuid).text(p.missing);
+}
+function quizstart()            { sendMessage('quizstart', quizparams()); }
+function quizstop()             { sendMessage('quizstop',  { sid: sid }); }
+function quizpause()            { if (!is_started) return; sendMessage('quizpause', quizparams()); }
+function quizTimeout(timeout)   { if (!is_started) return; $('#countdown').html(timeout); sendMessage('quiztimeout', { sid: sid, timeout: timeout }); }
+function quizRange(range)       { if (!is_started) return; sendMessage('quizrange',  { sid: sid, range: range }); }
+function quizExpected(e)        { if (!is_started) return; sendMessage('quizexpected',  { sid: sid, expected: e.is(":checked") }); }
+function quizStarted()          { $('i.qstatus').removeClass('w3-text-red').addClass('w3-text-green'); is_started=true; buttonDisable(start_btn); }
+function quizPaused()           { $('i.qstatus').removeClass('w3-text-green').addClass('w3-text-orange'); toggleBgColor(pause_btn, 'orange', 'pale-yellow');}
+function quizRestarted()        { toggleBgColor(pause_btn, 'pale-yellow', 'orange'); }
+
+function quizStopped(sid)       {
+    $('i.qstatus').removeClass('w3-text-green').addClass('w3-text-red');
+    $('#query').val(1);
+    is_started=false;
+    buttonEnable(start_btn);
+    sendMessage('ranking', { sid: sid });
+}
+
+function onMessageCBAK(msg) {
+    try {
+        var topic = msg.destinationName;
+        if (topic) {
+            var args = topicToJson(topic);
+            var payload = JSON.parse(msg.payloadString);
+            //console.log(topic);
+            //console.log(payload);
+            if (args.dev=='srv') {
+                switch (args.evt) {
+                    case ('status'):
+                        server_alive(payload); break;
+                    case ('query'):
+                        $('span.rsp').text('');
+                    case ('cmde'):
+                        display(payload);
+                        break;
+                    case ('qz-started'):
+                        prepareyResults(payload.gamers);
+                        quizStarted();
+                        display(payload);
+                        break;
+                    case ('qz-stopped'):
+                        cleanScreenQuery();
+                        quizStopped(payload.sid);
+                        break;
+                    case ('qz-paused'):
+                        quizPaused();
+                        break;
+                    case ('qz-restarted'):
+                        quizRestarted();
+                        break;
+                    case ('results'):
+                        displayResults(payload.uuid, payload);
+                        break;
+                    case ('rank'):
+                        $('span.rank-'+payload.uuid).text(payload.rank);
+                        break;
+                }
+            } else if (args.dev=='box') {
+                if (args.evt=='reply') {
+                    $('span.reply-'+args.uuid).text(queryValue[payload.value]);
+                }
+            }
+        }
+    } catch(e) {
+        //console.log(e);
+    }
+}
+
+function mqtt_init() {
+    ajax.Post(url_options, {uuid:uuid}).done(function(r) {
+        mqtt_options['userName'] = r.mqttuser;
+        mqtt_options['password'] = r.mqttpass;
+        mqttc = new MqttClientClass( mqtt_options, {
+            onMessageCallback: onMessageCBAK,
+            onConnectionCallback: onConnectionCBAK,
+            onDisconnectionCallback: onDisconnectionCBAK}
+        );
+        mqttc.connect();
+        quiz_open();
+    });
+}
+mqtt_init();
+</script>
+

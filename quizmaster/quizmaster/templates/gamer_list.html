@@ -1,0 +1,42 @@
+{% extends 'base-view.html' %}
+{% load i18n default_tags %}
+{% block ss_title_bar %}<span class="w3-opacity">{% trans 'Gamers list' %}</span>{% endblock  %}
+{% block menubar_ws_status %}{% endblock %}
+{% block principal %}
+<div class="w3-container w3-dark-low" style="width: 60%; margin: 2em auto;">
+    <h3 class="w3-center w3-blue-grey">{% trans 'Gamers list' %}</h3>
+    <form action="" method="post" enctype="multipart/form-data" class="w3-form">
+        {% csrf_token %}
+        <div class="w3-cell-row">
+            <div class="w3-cell w3-cell-middle p-2">
+                <label>{{ form.role.label }}:</label>
+                {{ form.role }}
+            </div>
+            <div class="w3-cell w3-cell-middle p-2">
+                <label>{{ form.connected.label }}:</label>
+                {{ form.connected }}
+            </div>
+
+        </div>
+    </form>
+    <table class="w3-table w3-bordered mt-2">
+        <thead class="w3-small middle">
+            <tr class="w3-border w3-large">
+                <th colspan="2" class="w3-border">{% trans 'Gamer' %}</th>
+                <th class="w3-center w3-border w-1">{% trans 'Gamer role' %}</th>
+                <th class="w3-center w3-border w-0">{% trans 'Connected' %}</th>
+            </tr>
+        <thead>
+        <tbody class="middle">
+            {% for g in gamers %}
+	            <tr>
+	                <td class="w-0 w3-border">{{ forloop.counter }}</td>
+	                <td><span style="color:{{ g.color }}">{{ g.username }}</span></td>
+	                <td class="w3-center w3-border">{{ g.get_role_name }}</td>
+	                <td class="w3-center w3-border">{{ g.connected |yes_no}}</td>
+	            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

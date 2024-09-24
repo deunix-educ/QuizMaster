@@ -1,0 +1,173 @@
+{% load i18n %}
+<script>
+// data and constantes
+let mqtt_options = {
+	host: "{{ mqtthost }}",
+	port: parseInt("{{ mqttport }}"),
+	reconnectTimeout: 5,
+	cleanSession: true,
+	keepAliveInterval: 60,
+	subs: {{ topicsubs|safe }},
+	useSSL: "{{ use_ssl }}" == "True"
+};
+
+let topicBase   = "{{ topicbase }}";
+let uuid        = "{{ uuid }}";
+let userid      = parseInt("{{ userid }}");
+let gamer       = "{{ gamer }}";
+let queryValue  = {{ choices|safe }};
+let yes_no      = "{% trans 'Yes / No' %}";
+let box_location= "{% url 'box' %}";
+let url_options = "{% url 'box_mqtt_options' %}";
+
+let btn0_reply  = $('button._bt0');
+let btn1_reply  = $('button._bt1');
+
+let screenQuery = $('#scr-query');
+let screenReply = $('#scr-reply');
+
+let is_started  = false;
+let reply       = false;
+let qid         = null;
+let q_rows      = null;
+
+
+function sendMessage(evt, p)        { publish(topicBase +'/'+ tsNow() +'/'+ evt, p); }
+function onOpen()                   { sendMessage('onopen',  {gamer:gamer}); }
+function onClose()                  { sendMessage('onclose', {gamer:gamer}); }
+function onStatus()                 { sendMessage('onstatus',  {gamer:gamer}); }
+function send_reply(v)              { if (!reply){ sendMessage('reply', { userid:userid, qid:qid, value:v }); reply=true;} }
+function onDisconnectionCallback(r) { onDisconnectionCb(response); onClose(); }
+function onConnectionCallback()     {
+    onConnectionCb();
+    onOpen();
+    setInterval(function() { sendMessage('ping', {} ); }, 30000);
+    btn_all_disable();
+}
+function btn0_reply_enable()        { btn0_reply.prop('disabled', false);}
+function btn0_reply_disable()       { btn0_reply.prop('disabled', true);}
+function btn1_reply_enable()        { btn1_reply.prop('disabled', false);}
+function btn1_reply_disable()       { btn1_reply.prop('disabled', true);}
+function setScreenQuery()           { w3Hide(screenReply); w3Show(screenQuery); }
+function setScreenReply()           { w3Hide(screenQuery); w3Show(screenReply); }
+function btn_boolean()              { btn1_reply_enable(); btn0_reply_disable();  }
+function btn_char()                 { btn1_reply_disable();  btn0_reply_enable(); }
+function btn_all_disable()          { btn0_reply_disable(); btn1_reply_disable(); }
+function btn_all_enable()           { btn0_reply_enable(); btn1_reply_enable() ;  }
+function blink_result(k, s)         { if(s) { $('span.'+k).addClass('blink w3-green'); }else{ $('span.'+k).removeClass('blink w3-green');} }
+
+function started(p)                 { display(p); is_started=true; btn_reply_enable(); }
+function stopped(p)                 { is_started=false; btn_all_disable(); }
+function quizStarted(p)             { $('i.qstatus').removeClass('w3-text-red').addClass('w3-text-green'); started(p); }
+function quizPaused(p)              { $('i.qstatus').removeClass('w3-text-green').addClass('w3-text-orange'); btn_all_disable();}
+function quizRestarted(p)           { btn_all_enable(); }
+function quizStopped(p)             { $('i.qstatus').removeClass('w3-text-green').addClass('w3-text-red'); stopped(p); }
+function quizreinit(p)              { server_alive(p); started(p); }
+
+function display(p)                 {
+	$.each(p, function(k, v) {
+        //console.log(k +':'+ v);
+	    switch (k) {
+            case ('date'):
+                v = dateToString(v);
+                break;
+	        case ('range'):
+	           $('#query').val(v);
+	           break;
+	        case ('qid'):
+	           qid=v;
+	           break;
+	        case ('boolean'):
+	           if (v) { v=yes_no; btn_boolean(); }else{ v=null; }
+	           break;
+	        case ('A'):
+	        case ('B'):
+	        case ('C'):
+	        case ('D'):
+	        case ('E'):
+	        case ('F'):
+	           if (v) { v=k +' - '+ v; btn_char(); } else { v=null; }
+	           break;
+            case ('response'):
+                expected=p.expected; if (v) { v=queryValue[expected]; blink_result(k, true); } else {  v=' '; blink_result(k, false); }
+                break;
+	    }
+	    $('span.'+ k).text(v);
+	});
+}
+
+function onMessageCallback(msg) {
+    try {
+        var topic = msg.destinationName;
+        if (topic) {
+            var args = topicToJson(topic);
+            var payload = JSON.parse(msg.payloadString);
+            //console.log(topic);
+            //console.log(payload);
+            if (args.dev=='srv') {
+                switch (args.evt) {
+                    case ('status'):
+                        server_alive(payload);
+                        onStatus();
+                        break;
+                    case ('query'):
+                        reply=false;
+                        qid=null;
+                        setScreenQuery();
+                    case ('cmde'):
+                        display(payload);
+                        break;
+                    case ('results'):
+                        if (uuid==payload.uuid) {
+                            setScreenReply();
+                            display(payload);
+                        }
+                        break;
+                    case ('rank'):
+                        if (uuid==payload.uuid) {
+                            $('span.rank').text(payload.rank);
+                        }
+                        break;
+                    case ('qz-started'):
+                        quizStarted(payload);
+                        break;
+                    case ('qz-stopped'):
+                        quizStopped(payload);
+                        break;
+                    case ('qz-paused'):
+                        quizPaused(payload);
+                        break;
+                    case ('qz-restarted'):
+                        quizRestarted(payload);
+                        break;
+                    case ('qz-reinit'):
+                        quizreinit(payload);
+                        break;
+                    case ('unconnect'):
+                    case ('qz-reload'):
+                        window.location.assign(box_location);
+                        break;
+                }
+            }
+        }
+    } catch(e) {
+        //console.log(e);
+    }
+}
+
+function mqtt_init() {
+    ajax.Post(url_options, {uuid:uuid}).done(function(r) {
+        mqtt_options['userName'] = r.mqttuser;
+        mqtt_options['password'] = r.mqttpass;
+		mqttc = new MqttClientClass( mqtt_options, {
+		    onMessageCallback: onMessageCallback,
+		    onConnectionCallback: onConnectionCallback,
+		    onDisconnectionCallback: onDisconnectionCallback}
+		);
+		mqttc.connect();
+    });
+}
+
+mqtt_init();
+</script>
+

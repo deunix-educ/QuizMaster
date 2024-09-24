@@ -1,0 +1,26 @@
+{% extends 'base-view.html' %}
+{% load i18n default_tags %}
+
+{% block ss_title_bar %}
+    <span class="w3-opacity">{% trans 'Tools' %}</span>
+{% endblock  %}
+{% block menubar_ws_status %}{% endblock %}
+
+{% block principal %}
+<div class="w3-container w3-dark-low w3-responsive" style="width: 60%; margin: 2em auto;">
+    <h3 class="w3-center w3-dark-plus p-1">{% trans 'Tools' %}</h3>
+    <form action="{% url 'tools' %}" method="post" enctype="multipart/form-data" class="w3-form">
+        {% csrf_token %}
+        <div class="ml-4">
+	        <input class="w3-check mr-4" type="checkbox" name="ssdel"><label>{% trans 'Delete empty sessions' %}</label><br>
+	        <input class="w3-check mr-4" type="checkbox" name="tgdel"><label>{% trans 'Delete tester gamers' %}</label><br>
+	        <input class="w3-check mr-4" type="checkbox" name="lgout"><label>{% trans 'Unconnect all players' %}</label><br>
+	        <input class="w3-check mr-4" type="checkbox" name="mqtt" value="quiz:mqttcd"><label>{% trans 'Restart mqtt server' %}</label><br>
+        </div>
+        <hr>
+        <button type="submit" class="w3-button w3-blue-grey w3-round-large">
+            <i class="fas fa-toolbox w3-text-green"></i> {% trans 'Update' %}
+        </button>
+    </form>
+</div>
+{% endblock %}

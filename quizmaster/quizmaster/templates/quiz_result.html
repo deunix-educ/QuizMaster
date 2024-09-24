@@ -1,0 +1,92 @@
+{% extends 'base-view.html' %}
+{% load i18n default_tags %}
+
+{% block ss_title_bar %}
+    <span class="w3-opacity">{% trans 'Game session results' %}</span>
+{% endblock  %}
+{% block menubar_ws_status %}{% endblock %}
+
+{% block principal %}
+<div id="quiz-slide" class="w3-container w3-sidebar w3-animate-left w3-dark-low">
+    <h3 class="w3-center w3-dark-plus p-1">{% trans 'Choose a Session' %}</h3>
+    <form action="" method="post" enctype="multipart/form-data" class="w3-form">
+        {% csrf_token %}
+        <div class="mt-2">
+	         <label>{{ filter.date.label }}:</label>
+	        {{ filter.date }}
+        </div>
+        <div class="mt-2">
+	        <label>{{ filter.quiz.label }}:</label>
+	        {{ filter.quiz }}
+        </div>
+        <div class="mt-2">
+	        <label>{{ filter.session.label }}:</label>
+	        {{ filter.session }}
+        </div>
+    </form>
+</div>
+<div id="quiz-main">
+    <div class="w3-cell-row">
+        <div class="w3-cell w3-cell-middle border-slide w3-dark-plus">
+            <div class="w3-text-orange w3-small" onclick="quiz_toggle()">&#9776;</div>
+        </div>
+        <div class="w3-cell w3-cell-top p-3">
+	        <div class="w3-container w3-dark-plus">
+	            <span class="w3-small">{{ session.get_status_display }}: {{ session.id }} {% trans 'from' %} {{ session.date|date:'d/m/Y H:i' }}</span>
+	            <span class="w3-right w3-small">{% trans 'Queries rows number' %}: <span class="w3-text-orange">{{ session.rownumber }}</span></span>
+	            <h5 class="w3-center"><span class="title">{% if session %}{{ session.quiz.title }}{% else %}{% trans 'Quiz title' %}{% endif %}</span></h5>
+	        </div>
+	        <div id="result" class="w3-responsive mt-2" >
+            {% if ranking %}
+                <div>
+                    <a href="{% url 'quiz_print_result'  session.id %}" title="{% trans 'Export' %}" target="_blank" class="w3-button w3-round-large w3-pink m-1"><i class="fas fa-file-pdf fa-2x"></i> pdf</a>
+                    <a href="{% url 'quiz_result_export' session.id 'csv' %}" title="{% trans 'Export' %}" class="w3-button w3-round-large w3-amber m-1"><i class="fas fa-file-csv fa-2x"></i> csv</a>
+                    <a href="{% url 'quiz_result_export' session.id 'xls' %}" title="{% trans 'Export' %}" class="w3-button w3-round-large w3-green  m-1"><i class="fas fa-file-excel fa-2x"></i> excel</a>
+                    <a href="{% url 'quiz_result_export' session.id 'json' %}" title="{% trans 'Export' %}" class="w3-button w3-round-large w3-green  m-1"><i class="fas fa-file-export fa-2x"></i> json</a>
+                </div>
+
+	            <table id="results" class="w3-table w3-bordered w3-centered">
+	                <thead class="w3-small middle">
+	                    <tr>
+	                        <th class="w3-border">{% trans 'Gamer' %}</th>
+	                        <th class="w3-border">{% trans 'Correct answers' %}</th>
+	                        <th class="w3-border">{% trans 'Wrong answers' %}</th>
+	                        <th class="w3-border">{% trans 'Missing answers' %}</th>
+	                        <th class="w3-border">{% trans 'Rank' %}</th>
+	                    </tr>
+	                <thead>
+	                <tbody class="middle">
+                        {% for r in ranking %}
+				        <tr>
+				            <td class="w3-border w3-left-align" style="color:{{ r.user.color }}">{{ r.user.username }}</td>
+				            <td class="w3-border"><span class="w3-text-green">{{ r.correct }}</span></td>
+				            <td class="w3-border"><span class="w3-text-red">{{ r.wrong }}</span></td>
+				            <td class="w3-border"><span class="w3-text-purple">{{ r.missing }}</span></td>
+				            <td class="w3-border"><span class="w3-text-orange">{{ r.rank }} / {{ session.registered }}</span></td>
+				        </tr>
+                        {% endfor %}
+	                </tbody>
+	            </table>
+            {% else %}
+                {% if session %}
+                <h4 class="w3-center"><a href="{% url 'quiz_session_delete' session.id %}" class="w3-button w3-orange w3-round-xlarge m-1">{% trans 'Delete this session' %}</a></h4>
+                {% endif %}
+            {% endif %}
+	        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js_footer %}
+<script>
+let slidelen= "35%";
+let quizid  = $('#quiz-main');
+let slideid = $('#quiz-slide');
+function quiz_open()    { quizid.css("margin-left", slidelen); slideid.css("width", slidelen); slideid.css("display", "block"); }
+function quiz_close()   { quizid.css("margin-left", "0"); slideid.css("display", "none"); }
+function quiz_toggle()  { slideid.css('display')=='none' ? quiz_open(): quiz_close(); }
+quiz_open();
+</script>
+{% endblock %}
+
+

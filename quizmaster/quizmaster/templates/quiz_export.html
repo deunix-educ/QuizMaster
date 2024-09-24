@@ -1,0 +1,79 @@
+{% extends 'base-view.html' %}
+{% load i18n default_tags %}
+
+{% block ss_title_bar %}
+    <span class="w3-opacity">{% trans 'Export quizzes' %}</span>
+{% endblock  %}
+{% block menubar_ws_status %}{% endblock %}
+
+{% block principal %}
+<div id="quiz-slide" class="w3-container w3-sidebar w3-animate-left w3-dark-low">
+    <form action="" method="post" enctype="multipart/form-data" class="w3-form">
+        {% csrf_token %}
+	    <h6 class="w3-dark-light w3-round-large p-2">{% trans 'Choose a quiz' %}</h6>
+	    <div class="mt-2">
+	            <label>{{ filter.levels.label }}:</label>
+	            {{ filter.levels }}
+	    </div>
+	    <div class="mt-2">
+	        <label>{{ filter.quiz.label }}:</label>
+	        {{ filter.quiz }}
+	    </div>
+    </form>
+</div>
+<div id="quiz-main">
+    {% if queries %}
+    <div class="w3-cell-row">
+        <div class="w3-cell w3-cell-middle border-slide w3-dark-plus">
+            <div class="w3-text-orange w3-small" onclick="quiz_toggle()">&#9776;</div>
+        </div>
+        <div class="w3-cell w3-cell-top p-3">
+            <div class="w3-container w3-dark-plus">
+                <h5 class="w3-center"><span class="title">{% if quiz %}{{ quiz.title }}{% endif %}</span></h5>
+            </div>
+            <div id="result" class="w3-responsive mt-2" >
+                <div>
+                    <a href="{% url 'quiz_queries_export' quiz.id 'csv' %}" title="{% trans 'Export' %}" class="w3-button w3-round-large w3-amber m-1"><i class="fas fa-file-csv fa-2x"></i> csv</a>
+                    <a href="{% url 'quiz_queries_export' quiz.id 'xls' %}" title="{% trans 'Export' %}" class="w3-button w3-round-large w3-green  m-1"><i class="fas fa-file-excel fa-2x"></i> excel</a>
+                    <a href="{% url 'quiz_queries_export' quiz.id 'json' %}" title="{% trans 'Export' %}" class="w3-button w3-round-large w3-green  m-1"><i class="fas fa-file-export fa-2x"></i> json</a>
+                </div>
+
+                <table id="results" class="w3-table w3-bordered">
+                    <thead class="w3-small middle">
+                        <tr>
+                            <th class="w3-center">{% trans 'Query range' %}</th>
+                            <th class="w3-center">{% trans 'Query level' %}</th>
+                            <th class="w3-center">{% trans 'Query description' %}</th>
+                            <th class="w3-center">{% trans 'Expected answer' %}</th>
+                        </tr>
+                    <thead>
+                    <tbody class="middle">
+                        {% for q in queries %}
+                        <tr>
+                            <td class="w3-center">{{ q.range }}</td>
+                            <td class="w3-center">{{ q.query.get_level_display }}</td>
+                            <td>{{ q.query.description|slice:":64" }}</td>
+                            <td class="w3-center">{{ q.query.expected }}</td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block js_footer %}
+<script>
+let slidelen= "30%";
+let quizid  = $('#quiz-main');
+let slideid = $('#quiz-slide');
+function quiz_open()    { quizid.css("margin-left", slidelen); slideid.css("width", slidelen); slideid.css("display", "block"); }
+function quiz_close()   { quizid.css("margin-left", "0"); slideid.css("display", "none"); }
+function quiz_toggle()  { slideid.css('display')=='none' ? quiz_open(): quiz_close(); }
+quiz_open();
+</script>
+{% endblock %}
+

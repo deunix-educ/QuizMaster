@@ -1,0 +1,60 @@
+{% extends 'base-view.html' %}
+{% load i18n default_tags %}
+
+{% block ss_title_bar %}
+    <span class="w3-opacity">{% trans 'Import quizzes' %}</span>
+{% endblock  %}
+{% block menubar_ws_status %}{% endblock %}
+
+{% block principal %}
+<div class="w3-container w3-dark-low w3-responsive" style="width: 80%; margin: 2em auto;">
+    <h3 class="w3-center w3-dark-plus p-1">{% trans 'Import quizzes' %}</h3>
+
+    <form action="" method="post" enctype="multipart/form-data" class="w3-form">
+        {% csrf_token %}
+	     <div class="w3-cell-row">
+	        <div class="w3-cell w3-cell-middle p-2">
+	            <label>{{ form.topic.label }}:</label>
+	            {{ form.topic }}
+            </div>
+	        <div class="w3-cell w3-cell-middle p-2">
+                <label>{{ form.level.label }}:</label>
+                {{ form.level }}
+	        </div>
+	    </div>
+        <div class="mt-2">
+            <label>{{ form.title.label }}:</label>
+            {{ form.title }}
+        </div>
+
+        {% if uploaded_file_url %}
+        <div class="w3-text-orange m-2"><i class="fas fa-download"></i> {{ uploaded_file_url }}</div>
+        {% endif %}
+        {% if result %}
+        <table class="w3-table">
+            <tr class="w3-dark-grey middle w3-small">
+                <th>{% trans 'ID' %}</th>
+                <th>{% trans 'Query description' %}</th>
+                <th class="w3-center">{% trans 'Answer' %}</th>
+            </tr>
+            {% for r in result %}
+            <tr class="middle">
+                <td>{{ quiz.id }}</td>
+                <td>{{ r.description|slice:":80" }}</td>
+                <td class="w3-center">{{ r.expected }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h4 class="w3-center"><a href="{% url 'quiz_import' %}" class="w3-button w3-orange w3-round-xlarge m-1">{% trans 'Creation done' %}</a></h4>
+        {% else %}
+        <hr>
+        <div class="w3-bar">
+            <div class="w3-bar-item"><input class="w3-text-orange" name="file" type="file"></div>
+            <button type="submit" class="w3-bar-item w3-button w3-blue-grey w3-round-xlarge w3-right m-1"><i class="fas fa-download"></i> {% trans 'Download' %}</button>
+        </div>
+        {% endif %}
+    </form>
+
+</div>
+{% endblock %}
+

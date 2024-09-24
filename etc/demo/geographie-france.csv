@@ -1,0 +1,9 @@
+description,boolean,A,B,C,D,E,F,expected
+Laquelle de ces villes n'est pas fortifiée ?,,Saint Malo,Concarneau,Carcassonne,Lorient,,,D
+Quel département ne se trouve pas au sud ?,,Var,Les Landes,Alpes Maritimes,Gard,,,B
+Laquelle de ces villes est fortifiée ?,,Saint Brieuc,Guerande,Lille,Marseille,,,A
+"Si vous traversez la France de la Rochelle vers Annecy, vous allez du ?",,Nord au Sud,Est en Ouest,Ouest en Est,Sud au Nord,,,C
+Dans quel département se trouve la ville de Privas ?,,Aveyron,Lozère,Ardèche,Haute Loire,,,C
+Et celle de Chalons en champagne ?,,La Meuse,Yonne,Aisne,La Marne,,,D
+Combien de départements français ont une frontière avec l'Espagne ?,,2,3,5,6,,,C
+Le Roussillon se trouve au ?,,Nord,Ouest,Sud,Est,,,C

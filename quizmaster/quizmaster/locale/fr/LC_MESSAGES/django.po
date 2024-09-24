@@ -1,0 +1,716 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-17 19:45+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: contrib/models.py:16
+msgid "Valid date"
+msgstr "Date valide"
+
+#: contrib/models.py:17
+msgid "Invalid date"
+msgstr "Date invalide"
+
+#: contrib/models.py:21
+msgid "Active"
+msgstr "Actif"
+
+#: contrib/models.py:22
+msgid "Inactive"
+msgstr "Inactif"
+
+#: contrib/models.py:26
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: contrib/models.py:27
+msgid "Yesterday"
+msgstr "Hier"
+
+#: contrib/models.py:28
+msgid "From 1 week"
+msgstr "Depuis 1 semaine"
+
+#: contrib/models.py:29
+msgid "From 2 weeks"
+msgstr "Depuis 2 semaines"
+
+#: contrib/models.py:30
+msgid "From 1 month"
+msgstr "Depuis 1 mois"
+
+#: contrib/models.py:31
+msgid "From 3 months"
+msgstr "Depuis 3 mois"
+
+#: contrib/models.py:32
+msgid "From 6 months"
+msgstr "Depuis 6 mois"
+
+#: contrib/models.py:33
+msgid "From 1 year"
+msgstr "Depuis 1 an"
+
+#: users/decorators.py:12
+msgid "This page requires authentication. "
+msgstr "Cette page nécessite une authentification"
+
+#: users/decorators.py:79
+msgid "Gamer is required"
+msgstr "Joueur est requis"
+
+#: users/decorators.py:92
+msgid "Anonymous is required"
+msgstr "Anonyme est requis"
+
+#: users/decorators.py:105
+msgid "Contributor is required"
+msgstr "Contributeur est requis"
+
+#: users/decorators.py:118
+msgid "Admin is required"
+msgstr "Administrateur est requis"
+
+#: users/decorators.py:131
+msgid "Only Staff is required"
+msgstr "Seul le staff est autorisé"
+
+#: users/decorators.py:144
+msgid "Only Superuser is required"
+msgstr "Seul le superutilisateur est autorisé"
+
+#: users/models.py:28
+msgid "Anonymous user"
+msgstr "Anonyme"
+
+#: users/models.py:29 quizmaster/forms.py:133 quizmaster/models.py:170
+#: quizmaster/models.py:186
+msgid "Gamer user"
+msgstr "Joueur"
+
+#: users/models.py:30
+msgid "Contributor user"
+msgstr "Contributeur"
+
+#: users/models.py:31
+msgid "Staff authorized"
+msgstr "Staff autorisé"
+
+#: users/models.py:32
+msgid "Supervisor"
+msgstr "Superviseur"
+
+#: users/models.py:35 quizmaster/templates/gamer_list.html:25
+msgid "Gamer role"
+msgstr "Rôle du joueur"
+
+#: users/models.py:36
+msgid "Gamer uuid"
+msgstr "Id joueur"
+
+#: users/models.py:37
+msgid "Gamer color"
+msgstr "Couleur joueur"
+
+#: users/models.py:38
+msgid "Connected "
+msgstr "Connecté"
+
+#: users/models.py:66
+msgid "User"
+msgstr "Utilisateur"
+
+#: quizmaster/admin.py:18 quizmaster/models.py:49
+msgid "Topic"
+msgstr "Thème"
+
+#: quizmaster/admin.py:28 quizmaster/admin.py:62 quizmaster/admin.py:73
+#: quizmaster/templates/print/footer.html:6
+msgid "Owner"
+msgstr "Propriétaire"
+
+#: quizmaster/admin.py:38 quizmaster/forms.py:42 quizmaster/forms.py:75
+#: quizmaster/models.py:109 quizmaster/models.py:124 quizmaster/models.py:152
+msgid "Quiz"
+msgstr "Questionnaire"
+
+#: quizmaster/admin.py:43 quizmaster/admin.py:52 quizmaster/models.py:125
+msgid "Query"
+msgstr "Question"
+
+#: quizmaster/forms.py:13
+msgid "All levels"
+msgstr "Tout les niveaux"
+
+#: quizmaster/forms.py:14 quizmaster/templates/include/quiz-form.html:4
+#: quizmaster/templates/quiz_export.html:13
+msgid "Choose a quiz"
+msgstr "Choisir un questionnaire"
+
+#: quizmaster/forms.py:34
+msgid "From date"
+msgstr "Depuis la date"
+
+#: quizmaster/forms.py:50
+msgid "Sessions"
+msgstr "Sessions"
+
+#: quizmaster/forms.py:51
+msgid "Choose a session"
+msgstr "Choisir une session"
+
+#: quizmaster/forms.py:69
+msgid "Level"
+msgstr "Niveau"
+
+#: quizmaster/forms.py:98 quizmaster/models.py:130
+msgid "Queries composition"
+msgstr "Compositions des questions"
+
+#: quizmaster/forms.py:110 quizmaster/forms.py:112 quizmaster/models.py:24
+msgid "Topic title"
+msgstr "Titre thème"
+
+#: quizmaster/forms.py:118 quizmaster/models.py:97
+msgid "Quiz level"
+msgstr "Niveau questionnaire"
+
+#: quizmaster/forms.py:124 quizmaster/models.py:95
+#: quizmaster/templates/quiz_result.html:37
+msgid "Quiz title"
+msgstr "Titre questionnaire"
+
+#: quizmaster/forms.py:134
+msgid "Gamer tester"
+msgstr "Joueur testeur"
+
+#: quizmaster/forms.py:138 quizmaster/models.py:38
+#: quizmaster/templates/box.html:90 quizmaster/templatetags/default_tags.py:45
+msgid "No"
+msgstr "Non"
+
+#: quizmaster/forms.py:139 quizmaster/models.py:39
+#: quizmaster/templates/box.html:87 quizmaster/templatetags/default_tags.py:45
+msgid "Yes"
+msgstr "Oui"
+
+#: quizmaster/forms.py:145 quizmaster/templates/gamer_list.html:26
+msgid "Connected"
+msgstr "Connecté"
+
+#: quizmaster/forms.py:152
+msgid "Games type"
+msgstr "Joueurs type"
+
+#: quizmaster/management/commands/box_tester.py:25
+msgid "ClientBoxWorker: user not a gamer tester"
+msgstr "ClientBoxWorker: utilisateur non joueur testeur"
+
+#: quizmaster/management/commands/import_sql.py:11
+msgid "True or false"
+msgstr "Vrai ou Faux"
+
+#: quizmaster/management/commands/import_sql.py:12
+msgid "Computer science"
+msgstr "Informatique"
+
+#: quizmaster/management/commands/import_sql.py:13
+msgid "Various"
+msgstr "Divers"
+
+#: quizmaster/management/commands/import_sql.py:14
+msgid "Science"
+msgstr "Sciences"
+
+#: quizmaster/management/commands/import_sql.py:15
+msgid "History"
+msgstr "Histoire"
+
+#: quizmaster/management/commands/import_sql.py:16
+msgid "Geography"
+msgstr "Géographie"
+
+#: quizmaster/management/commands/import_sql.py:17
+msgid "General culture"
+msgstr "Culture générale"
+
+#: quizmaster/management/commands/import_sql.py:18
+msgid "News"
+msgstr "Actualité"
+
+#: quizmaster/management/commands/import_sql.py:19
+msgid "Mathematics"
+msgstr "Matématiques"
+
+#: quizmaster/models.py:14
+msgid "Beginner"
+msgstr "Débutant"
+
+#: quizmaster/models.py:15
+msgid "Easy"
+msgstr "Facile"
+
+#: quizmaster/models.py:16
+msgid "Medium"
+msgstr "Moyen"
+
+#: quizmaster/models.py:17
+msgid "Hard"
+msgstr "Difficile"
+
+#: quizmaster/models.py:18
+msgid "Very hard"
+msgstr "Très difficile"
+
+#: quizmaster/models.py:28
+msgid "Quiz topic"
+msgstr "Question thème et sujet"
+
+#: quizmaster/models.py:40
+msgid "A"
+msgstr "A"
+
+#: quizmaster/models.py:41
+msgid "B"
+msgstr "B"
+
+#: quizmaster/models.py:42
+msgid "C"
+msgstr "C"
+
+#: quizmaster/models.py:43
+msgid "D"
+msgstr "D"
+
+#: quizmaster/models.py:44
+msgid "E"
+msgstr "E"
+
+#: quizmaster/models.py:45
+msgid "F"
+msgstr "F"
+
+#: quizmaster/models.py:46
+msgid "No answer"
+msgstr "Pas de réponse"
+
+#: quizmaster/models.py:48
+msgid "Query owner"
+msgstr "Propriétaire de la question"
+
+#: quizmaster/models.py:50 quizmaster/templates/quiz_export.html:45
+msgid "Query level"
+msgstr "Niveau question"
+
+#: quizmaster/models.py:52 quizmaster/templates/quiz_export.html:46
+#: quizmaster/templates/quiz_import.html:37
+msgid "Query description"
+msgstr "Description question"
+
+#: quizmaster/models.py:53
+msgid "Boolean"
+msgstr "Booléen"
+
+#: quizmaster/models.py:54
+msgid "Choice number A"
+msgstr "Choix numéo A"
+
+#: quizmaster/models.py:55
+msgid "Choice number B"
+msgstr "Choix numéo B"
+
+#: quizmaster/models.py:56
+msgid "Choice number C"
+msgstr "Choix numéo C"
+
+#: quizmaster/models.py:57
+msgid "Choice number D"
+msgstr "Choix numéo D"
+
+#: quizmaster/models.py:58
+msgid "Choice number E"
+msgstr "Choix numéo E"
+
+#: quizmaster/models.py:59
+msgid "Choice number F"
+msgstr "Choix numéo F"
+
+#: quizmaster/models.py:60 quizmaster/templates/quiz_export.html:47
+msgid "Expected answer"
+msgstr "Réponse attendue"
+
+#: quizmaster/models.py:86
+msgid "Question"
+msgstr "Question"
+
+#: quizmaster/models.py:94
+msgid "Quiz owner"
+msgstr "Propriétaire de questionnaire"
+
+#: quizmaster/models.py:96
+msgid "Slug title"
+msgstr "Slug questionnaire"
+
+#: quizmaster/models.py:98
+msgid "Active quiz"
+msgstr "Questionnaire actif"
+
+#: quizmaster/models.py:123 quizmaster/models.py:171
+#: quizmaster/templates/quiz_export.html:44
+msgid "Query range"
+msgstr "Rang de la question"
+
+#: quizmaster/models.py:144
+msgid "Session stopped"
+msgstr "Session arrêtée"
+
+#: quizmaster/models.py:145
+msgid "Session started"
+msgstr "Session démarrée"
+
+#: quizmaster/models.py:146
+msgid "Session paused"
+msgstr "Status Pausée"
+
+#: quizmaster/models.py:147
+msgid "Session ended"
+msgstr "Session terminée"
+
+#: quizmaster/models.py:151
+msgid "Session owner"
+msgstr "Propriétaire session"
+
+#: quizmaster/models.py:153
+msgid "Timeout beeween questions"
+msgstr "Delai entre questions"
+
+#: quizmaster/models.py:154
+msgid "Session status"
+msgstr "Status session"
+
+#: quizmaster/models.py:155
+msgid "Active session"
+msgstr "Session active"
+
+#: quizmaster/models.py:156 quizmaster/templates/quiz_result.html:36
+msgid "Queries rows number"
+msgstr "Nombre de lignes de requêtes"
+
+#: quizmaster/models.py:157 quizmaster/models.py:192
+msgid "Registered gamers"
+msgstr "Joueurs inscrits"
+
+#: quizmaster/models.py:161
+msgid "Session in progress"
+msgstr "Session en cours"
+
+#: quizmaster/models.py:169 quizmaster/models.py:185
+#: quizmaster/templates/box.html:12
+#: quizmaster/templates/include/quiz-display.html:7
+#: quizmaster/templates/include/quiz-queries.html:4
+#: quizmaster/templates/print/header.html:3
+msgid "Session"
+msgstr "Session"
+
+#: quizmaster/models.py:172 quizmaster/templates/include/quiz-display.html:48
+msgid "Response"
+msgstr "Réponse"
+
+#: quizmaster/models.py:173
+msgid "Result"
+msgstr "Résultat"
+
+#: quizmaster/models.py:177
+msgid "Session reply"
+msgstr "Session réponses"
+
+#: quizmaster/models.py:188 quizmaster/templates/box.html:22
+#: quizmaster/templates/include/quiz-display.html:49
+#: quizmaster/templates/print/result.html:16
+#: quizmaster/templates/quiz_result.html:52
+msgid "Correct answers"
+msgstr "Bonnes réponses"
+
+#: quizmaster/models.py:189 quizmaster/templates/box.html:28
+#: quizmaster/templates/include/quiz-display.html:50
+#: quizmaster/templates/print/result.html:17
+#: quizmaster/templates/quiz_result.html:53
+msgid "Wrong answers"
+msgstr "Mauvaises réponses"
+
+#: quizmaster/models.py:190 quizmaster/templates/box.html:34
+#: quizmaster/templates/include/quiz-display.html:51
+#: quizmaster/templates/print/result.html:18
+#: quizmaster/templates/quiz_result.html:54
+msgid "Missing answers"
+msgstr "Réponses absentes"
+
+#: quizmaster/models.py:191 quizmaster/templates/include/quiz-display.html:52
+#: quizmaster/templates/print/result.html:19
+#: quizmaster/templates/quiz_result.html:55
+msgid "Rank"
+msgstr "Rang"
+
+#: quizmaster/models.py:197 quizmaster/templates/box.html:40
+msgid "Ranking"
+msgstr "Classement"
+
+#: quizmaster/templates/box.html:3
+msgid "Quizbox"
+msgstr "Questionnaire"
+
+#: quizmaster/templates/box.html:9
+#: quizmaster/templates/include/quiz-command.html:5
+#: quizmaster/templates/include/quiz-display.html:5
+msgid "Status session"
+msgstr "Status de la session"
+
+#: quizmaster/templates/box.html:62
+#: quizmaster/templates/include/quiz-display.html:26
+msgid "Registered"
+msgstr "Inscrits"
+
+#: quizmaster/templates/box.html:65
+#: quizmaster/templates/include/quiz-display.html:29
+msgid "Row on"
+msgstr "Rang sur"
+
+#: quizmaster/templates/box.html:68
+#: quizmaster/templates/include/quiz-display.html:32
+msgid "Expected"
+msgstr "Attendu"
+
+#: quizmaster/templates/box.html:71
+#: quizmaster/templates/include/quiz-display.html:35
+msgid "Remainder"
+msgstr "Reste"
+
+#: quizmaster/templates/gamer_list.html:3
+#: quizmaster/templates/include/menu-right.html:8
+msgid "Gamers list"
+msgstr "Liste des joueurs"
+
+#: quizmaster/templates/gamer_list.html:24
+#: quizmaster/templates/include/quiz-display.html:47
+#: quizmaster/templates/print/result.html:15
+#: quizmaster/templates/quiz_result.html:51
+msgid "Gamer"
+msgstr "Joueur"
+
+#: quizmaster/templates/home.html:3
+msgid "Quizmaster"
+msgstr "Quizmaster"
+
+#: quizmaster/templates/home.html:9
+msgid "Quiz management and administration"
+msgstr "Gestion et administration des questionnaires"
+
+#: quizmaster/templates/home.html:13
+msgid ""
+"Before starting, please import import your questionnaires in csv format. "
+"(See quiz-model.ods model)"
+msgstr ""
+"Avant de commencer veuillez importer vos questionnaires au format csv. (Voir "
+"le modèle quiz-model.ods)"
+
+#: quizmaster/templates/home.html:16
+msgid ""
+"This application sends questions and receives answers from connected devices "
+"(quizbox) which may be a web interfaces, a phone, or an iot."
+msgstr ""
+"Cette application assure l'émission des questions et la réception des "
+"réponses des périphériques connectés (quizbox) qui pourront être des "
+"interface de type web, téléphone, ou iot."
+
+#: quizmaster/templates/home.html:20
+#: quizmaster/templates/include/menu-right.html:6
+msgid "Play a quiz"
+msgstr "Jouer un questionnaire"
+
+#: quizmaster/templates/home.html:21
+#: quizmaster/templates/include/menu-right.html:7
+msgid "Games result"
+msgstr "Résultats des jeux"
+
+#: quizmaster/templates/include/box-js-inc.html:19
+#: quizmaster/templates/include/quiz-js-inc.html:18
+msgid "Yes / No"
+msgstr "Oui / Non"
+
+#: quizmaster/templates/include/menu-right.html:11
+msgid "Import a quiz"
+msgstr "Importer un questionnaire"
+
+#: quizmaster/templates/include/menu-right.html:12
+msgid "Export a quiz"
+msgstr "Exporter un questionnaire"
+
+#: quizmaster/templates/include/menu-right.html:13
+#: quizmaster/templates/quiz-help.html:5 quizmaster/templates/quiz-help.html:11
+msgid "Quiz help"
+msgstr "Aide questionnaire"
+
+#: quizmaster/templates/include/menu-right.html:18
+#: quizmaster/templates/tools.html:5 quizmaster/templates/tools.html:11
+msgid "Tools"
+msgstr "Boîte à outils"
+
+#: quizmaster/templates/include/menu-right.html:19
+msgid "Database administration"
+msgstr "Administration base de données"
+
+#: quizmaster/templates/include/menu-right.html:22
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: quizmaster/templates/include/quiz-command.html:8
+msgid "Start"
+msgstr "Marche"
+
+#: quizmaster/templates/include/quiz-command.html:9
+msgid "Pause"
+msgstr "Pause"
+
+#: quizmaster/templates/include/quiz-command.html:10
+msgid "Stop"
+msgstr "Arrêt"
+
+#: quizmaster/templates/include/quiz-display.html:7
+#: quizmaster/templates/print/header.html:3
+#: quizmaster/templates/quiz_result.html:35
+msgid "from"
+msgstr "du"
+
+#: quizmaster/templates/include/quiz-form.html:14
+msgid "New session"
+msgstr "Nouvelle session"
+
+#: quizmaster/templates/include/quiz-queries.html:7
+msgid "Queries"
+msgstr "Questions"
+
+#: quizmaster/templates/include/quiz-queries.html:15
+msgid "Timeout beetween questions"
+msgstr "Delai entre questions"
+
+#: quizmaster/templates/include/quiz-queries.html:19
+msgid "Expected response is masqued"
+msgstr "La réponse attendue est masquée"
+
+#: quizmaster/templates/index.html:8
+msgid "Serious games"
+msgstr "Jeux sérieux"
+
+#: quizmaster/templates/index.html:12
+msgid ""
+"Test your culture and improve your knowledge of the world while having fun! "
+"Take part in our quizzes and become knowledgeable about dozens of themes!"
+msgstr ""
+"Testez votre culture et améliorez vos connaissances sur le monde en vous "
+"amusant !Participez à nos quiz et devenez incollable sur des dizaines de "
+"thématiques !"
+
+#: quizmaster/templates/index.html:14
+msgid "Ready to play"
+msgstr "Prêt à jouer"
+
+#: quizmaster/templates/index.html:18
+msgid "Access for gamers"
+msgstr "Accès pour joueur"
+
+#: quizmaster/templates/index.html:21
+msgid "Access for administrators"
+msgstr "Accès administration"
+
+#: quizmaster/templates/print/result.html:5
+msgid "Quizmaster results"
+msgstr "Résultats de Quizmaster"
+
+#: quizmaster/templates/quiz.html:4
+msgid "Game sessions"
+msgstr "Sessions de jeu"
+
+#: quizmaster/templates/quiz_export.html:5
+msgid "Export quizzes"
+msgstr "Exporter des questionnaires"
+
+#: quizmaster/templates/quiz_export.html:36
+#: quizmaster/templates/quiz_export.html:37
+#: quizmaster/templates/quiz_export.html:38
+#: quizmaster/templates/quiz_result.html:42
+#: quizmaster/templates/quiz_result.html:43
+#: quizmaster/templates/quiz_result.html:44
+#: quizmaster/templates/quiz_result.html:45
+msgid "Export"
+msgstr "Exporter"
+
+#: quizmaster/templates/quiz_import.html:5
+#: quizmaster/templates/quiz_import.html:11
+msgid "Import quizzes"
+msgstr "Importer des questionnaires"
+
+#: quizmaster/templates/quiz_import.html:36
+msgid "ID"
+msgstr "ID"
+
+#: quizmaster/templates/quiz_import.html:38
+msgid "Answer"
+msgstr "Réponse"
+
+#: quizmaster/templates/quiz_import.html:48
+msgid "Creation done"
+msgstr "Création terminée"
+
+#: quizmaster/templates/quiz_import.html:53
+msgid "Download"
+msgstr "Télécharger"
+
+#: quizmaster/templates/quiz_result.html:5
+msgid "Game session results"
+msgstr "Résultats des sessions de jeu"
+
+#: quizmaster/templates/quiz_result.html:11
+msgid "Choose a Session"
+msgstr "Choisir une session"
+
+#: quizmaster/templates/quiz_result.html:72
+msgid "Delete this session"
+msgstr "Supprimer cette session"
+
+#: quizmaster/templates/tools.html:15
+msgid "Delete empty sessions"
+msgstr "Supprimer les sessions vides"
+
+#: quizmaster/templates/tools.html:16
+msgid "Delete tester gamers"
+msgstr "Supprimer les joueurs testeurs"
+
+#: quizmaster/templates/tools.html:17
+msgid "Unconnect all players"
+msgstr "Déconnecter tous les joueurs"
+
+#: quizmaster/templates/tools.html:18
+msgid "Restart mqtt server"
+msgstr "Redémarrer le serveur mqtt"
+
+#: quizmaster/templates/tools.html:22
+msgid "Update"
+msgstr "Mettre à jour"
+
+#~ msgid "Questionnaire management"
+#~ msgstr "Gestion des questionnaires"

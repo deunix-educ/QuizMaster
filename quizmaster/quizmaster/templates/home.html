@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block ss_title_bar %}<span class="w3-opacity">{% trans 'Quizmaster' %}</span>{% endblock  %}
+
+{% block principal %}
+<div class="" style="min-height: 60vh">
+	<div class="w3-card-4 w3-border" style="margin: 4em auto; width:60%;">
+		<header class="w3-container w3-blue-grey">
+		  <h3>{% trans 'Quiz management and administration' %}</h3>
+		</header>
+		<div class="w3-container">
+			<p class="m-4">
+			  {% trans "Before starting, please import import your questionnaires in csv format. (See quiz-model.ods model)" %}
+		    </p>
+		    <p class="m-4">
+              {% trans "This application sends questions and receives answers from connected devices (quizbox) which may be a web interfaces, a phone, or an iot." %}
+		    </p>
+		</div>
+		<footer class="w3-container w3-center w3-border-top p-4">
+            <a href="{% url 'quiz' %}" class="w3-button w3-dark-plus w3-round-large m-4"><i class="fas fa-gamepad w3-text-teal"></i> {% trans 'Play a quiz' %}</a>
+            <a href="{% url 'quiz_result' %}" class="w3-button w3-dark-plus w3-round-large m-4"><i class="fas fa-list w3-text-teal"></i> {% trans 'Games result' %}</a>
+            <a href="{% url 'gamer_list' %}" class="w3-button w3-dark-plus w3-round-large m-4"><i class="fas fa-users w3-text-orange"></i> {% trans 'Gamers list' %}</a>
+		</footer>
+	</div>
+</div>
+{% endblock %}

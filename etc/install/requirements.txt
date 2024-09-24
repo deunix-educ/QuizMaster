@@ -1,0 +1,12 @@
+django
+django-colorfield
+django-admin-interface
+django-import-export
+django-axes
+gunicorn
+python-decouple
+mysqlclient
+requests
+xhtml2pdf
+paho-mqtt
+faker

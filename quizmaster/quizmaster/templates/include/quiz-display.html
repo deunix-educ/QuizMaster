@@ -1,0 +1,59 @@
+{% load i18n %}
+<div class="w3-container mt-2">
+    <div class="w3-border">
+        <div class="w3-dark-plus">
+            <i class="fas fa-circle w3-text-red cursor-pointer w3-left m-1 qstatus" title="{% trans 'Status session' %}"></i>
+            <span class="ml-1 w3-small">
+                <span>{% trans 'Session' %}:&nbsp;{{ session.id }}&nbsp;{% trans 'from' %}&nbsp;{{ session.date|date:'d/m/Y H:i' }}</span>
+            </span>
+            <h5 class="w3-center m-1"><span class="title">{% if session %}{{ session.quiz.title }}{% endif %}</span></h5>
+        </div>
+        <div>
+		    <div class="m-1">
+		        <span class="scr description"></span>
+		    </div>
+	        <h5 class="m-4"><span class="w3-large boolean"></span></h5>
+		    <div class="m-4">
+		        <span class="scr A"></span><br>
+		        <span class="scr B"></span><br>
+		        <span class="scr C"></span><br>
+		        <span class="scr D"></span><br>
+		        <span class="scr E"></span><br>
+		        <span class="scr F"></span>
+		    </div>
+		    <div class="w3-cell-row w3-center mt-2">
+                <div class="w3-cell w3-cell-bottom w3-border p-1">
+                     <span class="w3-badge w3-orange registered"></span><br><span class="w3-small"><i class="fas fa-users w3-text-orange"></i> {% trans 'Registered' %}</span>
+                </div>
+		        <div class="w3-cell w3-cell-bottom w3-border p-1">
+		             <span class="scr w3-badge w3-blue-grey range"></span><br><span class="w3-small"><i class="fas fa-bars w3-text-blue"></i> {% trans 'Row on' %}&nbsp;<span class="q_rows"></span></span>
+		        </div>
+		        <div class="w3-cell w3-cell-bottom w3-border p-1">
+		            <span class="scr w3-badge response">&nbsp;</span><br><span class="w3-small"><i class="fas fa-reply w3-text-lime"></i> {% trans 'Expected' %}</span>
+		        </div>
+		        <div class="w3-cell w3-cell-bottom w3-border p-1">
+		            <span class="scr w3-badge w3-teal countdown"></span><br><span class="w3-small"><i class="fas fa-clock w3-text-teal"></i> {% trans 'Remainder' %}</span>
+		        </div>
+		    </div>
+        </div>
+    </div>
+</div>
+<div class="hr-slide w3-center cursor-pointer mt-1 mb-1 " onclick="$('#rslt').toggle()"></div>
+<div class="w3-container">
+    <div id="rslt" class="w3-responsive" >
+        <table id="results" class="w3-table w3-bordered w3-centered w3-tiny">
+            <thead class="middle">
+				<tr>
+					<th class="w3-border">{% trans 'Gamer' %}</th>
+					<th class="w3-border">{% trans 'Response' %}</th>
+					<th class="w3-border">{% trans 'Correct answers' %}</th>
+					<th class="w3-border">{% trans 'Wrong answers' %}</th>
+					<th class="w3-border">{% trans 'Missing answers' %}</th>
+					<th class="w3-border">{% trans 'Rank' %}</th>
+				</tr>
+            <thead>
+            <tbody class="middle"></tbody>
+        </table>
+    </div>
+</div>
+
