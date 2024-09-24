@@ -16,6 +16,7 @@ Les joueurs disposent d'un matériel connecté (IOT), d'un mobile, d'un portable
 QuizMaster est une application écrite entièrement en python django sous license MIT.<br>
 La maintenance et et la mise à jour des questions se fait exclusivement à partir de l'administration django.<br>
 
+<img title="quizmaster" alt="Alt text" src="etc/install/quizmaster.png">
 
 ### REQUIS
 Matériels:
