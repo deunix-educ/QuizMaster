@@ -19,7 +19,13 @@
         <a href="/admin/" class="w3-bar-item w3-button"><i class="fas fa-database w3-text-orange"></i> {% trans 'Database administration' %}</a>
         {% endif %}
         <hr class="w3-bar-item divider w3-grey">
-        <a href="{% url 'logout' %}" class="w3-bar-item w3-button"><i class="fas fa-sign-out-alt w3-text-red"></i> {% trans 'Logout' %}</a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="w3-bar-item w3-button" type="submit">
+                <i class="fas fa-sign-out-alt w3-text-red"></i>  {% trans 'Logout' %}
+            </button>  
+        </form>         
+
     </div>
 </div>
 {% endif %}

@@ -4,7 +4,7 @@
 
 {% block principal %}
 <div class="mt-4">
-    <div class="w3-border m-0 p-0" style="width: 350px; margin:0 auto">
+    <div class="w3-border m-0 p-0 w3-mobile" style="width: 320px; margin:0 auto">
         <div class="w3-dark-plus">
             <i class="fas fa-circle w3-text-red cursor-pointer w3-left m-1 qstatus" title="{% trans 'Status session' %}"></i>
 
@@ -48,7 +48,7 @@
 	        <div class="">
 	            <div class="m-1"><span class="description w3-small"></span></div>
 	            <h5 class="m-4"><span class="w3-large boolean"></span></h5>
-			    <div class="m-4">
+			    <div class="m-2">
 			        <span class="A"></span><br>
 			        <span class="B"></span><br>
 			        <span class="C"></span><br>
@@ -82,7 +82,7 @@
 	                <button class="_bt0 w3-button w3-large w3-pale-yellow bt-margin" onclick="send_reply(7)">F</button>
 	            </div>
 	        </div>
-	        <div class="w3-cell-row p-1">
+	        <div class="w3-cell-row p-0">
 	            <div class="w3-cell">
 	                <button class="_bt1 w3-button w3-block w3-wide w3-green" onclick="send_reply(1)"><h6>{% trans 'Yes' %}</h6></button>
 	            </div>
