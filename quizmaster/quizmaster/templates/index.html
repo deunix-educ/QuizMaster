@@ -17,9 +17,11 @@
 	        <a href="{% url 'login_to_box' %}" class="w3-button w3-dark-plus w3-round-large m-2">
 	            <i class="fas fa-user w3-text-orange"></i> {% trans 'Access for gamers' %}
 	        </a>
+	        {% if request.user.is_superuser or request.user.is_staff %}
 	        <a href="{% url 'home' %}" class="w3-button w3-dark-plus w3-round-large m-2">
 	            <i class="fas fa-user-cog w3-text-red"></i> {% trans 'Access for administrators' %}
 	        </a>
+	        {% endif %}
 		</footer>
 	</div>
 </div>
